@@ -1,15 +1,19 @@
 #add token ID from tokens.py
 from tokens import cmc_token
 
+import requests
 
 def get_cmc_data(crypto):
     url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest'
     params = {'symbol':crypto,'convert':'USD'}
-    header = {'X-CMC_PRO_API_KEY': cmc_token}
+    headers = {'X-CMC_PRO_API_KEY': cmc_token}
+
+    r = requests.get(url,params= params,headers= headers)
+    print(r)
 
 
 def main():
-    pass
+    get_cmc_data('crypto code name')
 
 if __name__ == '__main__':
     main()
