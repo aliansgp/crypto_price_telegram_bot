@@ -8,12 +8,12 @@ def get_cmc_data(crypto):
     params = {'symbol':crypto,'convert':'USD'}
     headers = {'X-CMC_PRO_API_KEY': cmc_token}
 
-    r = requests.get(url,params= params,headers= headers)
+    r = requests.get(url,params= params,headers= headers).json()
     print(r)
 
 
 def main():
-    get_cmc_data('crypto code name')
+    get_cmc_data('BTC')
 
 if __name__ == '__main__':
     main()
