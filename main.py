@@ -16,8 +16,9 @@ def get_cmc_data(crypto):
     headers = {'X-CMC_PRO_API_KEY': cmc_token}
 
     r = requests.get(url,params= params,headers= headers).json()
-    print(r)
+    price = r['data'][crypto]['quote']['USD']['price']
 
+    return price
 
 def main():
     get_cmc_data('BTC')
