@@ -2,6 +2,13 @@
 from tokens import cmc_token
 
 import requests
+import json
+
+def write_json(data, filename = 'response.json'):
+    with open(filename,'w') as f:
+        json.dump(data,f,indent=4,ensure_ascii=False)
+
+
 
 def get_cmc_data(crypto):
     url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest'
