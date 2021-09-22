@@ -3,6 +3,7 @@ from tokens import cmc_token
 
 import requests
 import json
+import re
 from flask import Flask
 from flask import request
 from flask import Response
@@ -11,10 +12,37 @@ token = '2026961563:AAGadRSpDv4fe3WvmhxrlQ1_xy6UybrBrpg'
 
 app = Flask(__name__)
 
+def parse_message(message):
+    chat_id = message['message']['chat']['id']
+    text = message['message']['text']
+    pattern = r'/[a-zA-Z]{2,4}'
+    ticker = re.findall(pattern,text)
+
+    if ticker:
+        symbol = ticker[0][1:].upper()
+
+    else:
+        symbol = ''
+    return chat_id,symbol
+
+def send_message(chat_id,text='...'):
+    url = 'https://api.telegram.org/bot2026961563:AAGadRSpDv4fe3WvmhxrlQ1_xy6UybrBrpg/sendMessage'
+    peyload = {'chat_id': chat_id,'text':text }
+    r = requests.post(url, json=peyload)
+    return r
+
 @app.route('/', methods = ['POST','GET'])
 def index():
     if request.method == 'POST':
         msg = request.get_json()
+        chat_id, symbol = parse_message(msg)
+
+        if not symbol:
+            send_message(chat_id,'wrong data')
+            return Response('ok', status=200)
+
+        price = get_cmc_data(symbol)
+        send_message(chat_id,price)
         write_json(msg, 'telegram_json')
         return Response('OK', status=200)
     else:
