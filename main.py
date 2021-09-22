@@ -7,10 +7,11 @@ import re
 from flask import Flask
 from flask import request
 from flask import Response
-
+from flask_sslify import SSLify
 token = '2026961563:AAGadRSpDv4fe3WvmhxrlQ1_xy6UybrBrpg'
 
 app = Flask(__name__)
+sslify = SSLify(app)
 
 def parse_message(message):
     chat_id = message['message']['chat']['id']
@@ -61,7 +62,7 @@ def get_cmc_data(crypto):
 
     r = requests.get(url,params= params,headers= headers).json()
     write_json(r)
-    price = r['data'][crypto]['quote']['USD']['price']
+    price = r['da ta'][crypto]['quote']['USD']['price']
 
     return price
 
