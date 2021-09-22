@@ -71,11 +71,11 @@ def main():
     print(get_cmc_data('BTC'))
 
 #-->after 'bot' you must write your bot HTTP API
-#https://api.telegram.org/bot2026961563:AAGadRSpDv4fe3WvmhxrlQ1_xy6UybrBrpg/getMe
+#https://api.telegram.org/bot{token}/getMe
 
 #--> webhook URL from pythonanywhere.com
 #--> then you run this URL and set webhook:
-#https://api.telegram.org/bot2026961563:AAGadRSpDv4fe3WvmhxrlQ1_xy6UybrBrpg/setWebHook?url=https://aliansgp.pythonanywhere.com/
+#https://api.telegram.org/bot{token}/setWebHook?url=https://aliansgp.pythonanywhere.com/
 
 
 
