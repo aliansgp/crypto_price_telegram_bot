@@ -140,4 +140,5 @@ dmypy.json
 # Cython debug symbols
 cython_debug/
 
-tokens.py
+/tokens.py
+/response.json
