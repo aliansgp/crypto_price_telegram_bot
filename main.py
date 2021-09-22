@@ -8,7 +8,8 @@ from flask import Flask
 from flask import request
 from flask import Response
 from flask_sslify import SSLify
-token = '2026961563:AAGadRSpDv4fe3WvmhxrlQ1_xy6UybrBrpg'
+
+token = 'your bot HTTP API'
 
 app = Flask(__name__)
 sslify = SSLify(app)
@@ -27,7 +28,7 @@ def parse_message(message):
     return chat_id,symbol
 
 def send_message(chat_id,text='...'):
-    url = 'https://api.telegram.org/bot2026961563:AAGadRSpDv4fe3WvmhxrlQ1_xy6UybrBrpg/sendMessage'
+    url = 'https://api.telegram.org/bot{token}/sendMessage'
     peyload = {'chat_id': chat_id,'text':text }
     r = requests.post(url, json=peyload)
     return r
@@ -72,11 +73,9 @@ def main():
 #-->after 'bot' you must write your bot HTTP API
 #https://api.telegram.org/bot2026961563:AAGadRSpDv4fe3WvmhxrlQ1_xy6UybrBrpg/getMe
 
-#https://api.telegram.org/bot2026961563:AAGadRSpDv4fe3WvmhxrlQ1_xy6UybrBrpg/getMe
-
-#--> webhook URL from vtxhub.com
+#--> webhook URL from pythonanywhere.com
 #--> then you run this URL and set webhook:
-#https://api.telegram.org/bot2026961563:AAGadRSpDv4fe3WvmhxrlQ1_xy6UybrBrpg/setWebHook?url=https://user7328608265265fd.app.vtxhub.com/
+#https://api.telegram.org/bot2026961563:AAGadRSpDv4fe3WvmhxrlQ1_xy6UybrBrpg/setWebHook?url=https://aliansgp.pythonanywhere.com/
 
 
 
