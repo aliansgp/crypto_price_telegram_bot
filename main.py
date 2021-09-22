@@ -4,6 +4,8 @@ from tokens import cmc_token
 import requests
 import json
 from flask import Flask
+from flask import request
+from flask import Response
 
 token = '2026961563:AAGadRSpDv4fe3WvmhxrlQ1_xy6UybrBrpg'
 
@@ -11,7 +13,12 @@ app = Flask(__name__)
 
 @app.route('/', methods = ['POST','GET'])
 def index():
-    return '<p>coinmarketcap bot</p>'
+    if request.method == 'POST':
+        msg = request.get_json()
+        write_json(msg, 'telegram_json')
+        return Response('OK', status=200)
+    else:
+        return '<p>coinmarketcap bot</p>'
 
 def write_json(data, filename = 'response.json'):
     with open(filename,'w') as f:
