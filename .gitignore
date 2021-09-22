@@ -142,3 +142,4 @@ cython_debug/
 
 /tokens.py
 /response.json
+/telegram_json
