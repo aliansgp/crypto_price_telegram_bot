@@ -3,8 +3,15 @@ from tokens import cmc_token
 
 import requests
 import json
+from flask import Flask
 
 token = '2026961563:AAGadRSpDv4fe3WvmhxrlQ1_xy6UybrBrpg'
+
+app = Flask(__name__)
+
+@app.route('/', methods = ['POST','GET'])
+def index():
+    return '<p>coinmarketcap bot</p>'
 
 def write_json(data, filename = 'response.json'):
     with open(filename,'w') as f:
@@ -26,5 +33,16 @@ def get_cmc_data(crypto):
 def main():
     print(get_cmc_data('BTC'))
 
+#-->after 'bot' you must write your bot HTTP API
+#https://api.telegram.org/bot2026961563:AAGadRSpDv4fe3WvmhxrlQ1_xy6UybrBrpg/getMe
+
+#https://api.telegram.org/bot2026961563:AAGadRSpDv4fe3WvmhxrlQ1_xy6UybrBrpg/getMe
+
+#--> webhook URL from vtxhub.com
+#--> then you run this URL and set webhook:
+#https://api.telegram.org/bot2026961563:AAGadRSpDv4fe3WvmhxrlQ1_xy6UybrBrpg/setWebHook?url=https://user7328608265265fd.app.vtxhub.com/
+
+
+
 if __name__ == '__main__':
-    main()
+    app.run(debug=True)
